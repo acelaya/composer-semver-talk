@@ -21,7 +21,9 @@ class UserController extends AbstractController
 
     public function listAction()
     {
-
+        return $this->renderer->render('users/list.html.twig', [
+            'users' => $this->userService->getUsers()
+        ]);
     }
 
     public function createAction(Request $request)

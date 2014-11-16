@@ -23,7 +23,9 @@ $app['doctrine'] = $app->share(function () use ($app) {
             __DIR__ . '/../src/Entity'
         ],
         true,
-        __DIR__ . '/../var/proxies'
+        __DIR__ . '/../var/proxies',
+        null,
+        false
     );
     return EntityManager::create([
         'driver' => 'pdo_sqlite',

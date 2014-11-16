@@ -16,19 +16,19 @@ class User implements ArraySerializableInterface
 {
     /**
      * @var int
-     * @Id
-     * @Column
-     * @GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id
+     * @ORM\Column
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $username;
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $password;
 
