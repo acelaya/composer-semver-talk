@@ -7,7 +7,7 @@
         </a>
     </div>
     {% if users | length == 0 %}
-        <div class="well">Users list is empty. <a href="{{ app.request.basepath }}/users/create">Create</a> a new one.</div>
+        <div class="well" style="margin-top: 20px;">Users list is empty. <a href="{{ app.request.basepath }}/users/create">Create</a> a new one.</div>
     {% else %}
         <table class="table table-hover">
             <thead>
