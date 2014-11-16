@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <form method="post">
+        <p>Are you sure you want to delete the user <b>{{ user.username }}</b>?</p>
+        <div class="text-right">
+            <a class="btn btn-default" href="{{ app.request.basepath }}/users">Cancel</a>
+            <button type="submit" class="btn btn-primary">Delete</button>
+        </div>
+    </form>
+{% endblock %}

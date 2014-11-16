@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <form method="post">
+        {% if user is defined %}
+            <input type="hidden" name="user[id]" value="{{ user.id }}">
+        {% endif %}
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="user[username]" placeholder="Username" class="form-control" value="{{ user is defined ? user.username : '' }}">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="user[password]" placeholder="Password" class="form-control" value="{{ user is defined ? user.password : '' }}">
+        </div>
+        <div class="text-right">
+            <a class="btn btn-default" href="{{ app.request.basepath }}/users">Cancel</a>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+{% endblock %}

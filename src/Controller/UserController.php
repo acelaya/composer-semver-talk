@@ -1,6 +1,7 @@
 <?php
 namespace SymfonyZgz\Controller;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use SymfonyZgz\Service\UserServiceInterface;
 
@@ -28,16 +29,37 @@ class UserController extends AbstractController
 
     public function createAction(Request $request)
     {
+        if ($request->isMethod('POST')) {
+            $userData = $request->get('user');
+            $this->userService->createUser($userData);
+            return new RedirectResponse($request->getBasePath() . '/users');
+        }
 
+        return $this->renderer->render('users/form.html.twig');
     }
 
     public function editAction(Request $request, $id)
     {
+        $user = $this->userService->getUser($id);
+        if ($request->isMethod('POST')) {
+            $userData = $request->get('user');
+            $this->userService->updateUser($userData);
+            return new RedirectResponse($request->getBasePath() . '/users');
+        }
 
+        return $this->renderer->render('users/form.html.twig', ['user' => $user]);
     }
 
-    public function deleteAction($id)
+    public function deleteAction(Request $request, $id)
     {
+        if ($request->isMethod('POST')) {
+            $userData = $request->get('user');
+            $this->userService->deleteUser($id);
+            return new RedirectResponse($request->getBasePath() . '/users');
+        }
 
+        return $this->renderer->render('users/delete.html.twig', [
+            'user' => $this->userService->getUser($id)
+        ]);
     }
 }
