@@ -1,13 +1,26 @@
 <?php
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 $app->get('/', 'main.controller:indexAction')
     ->bind('homepage');
+
+$app->get('/users', 'user.controller:listAction')
+    ->bind('users_list');
+
+$app->match('/users/create', 'user.controller:createAction')
+    ->bind('create_user')
+    ->method('GET|POST');
+
+$app->match('/users/edit/{id}', 'user.controller:editAction')
+    ->bind('edit_user')
+    ->method('GET|POST')
+    ->assert('id', '[0-9]+');
+
+$app->match('/users/delete/{id}', 'user.controller:deleteAction')
+    ->bind('delete_user')
+    ->method('GET|POST')
+    ->assert('id', '[0-9]+');
 
 $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {

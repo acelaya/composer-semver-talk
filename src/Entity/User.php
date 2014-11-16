@@ -2,6 +2,7 @@
 namespace SymfonyZgz\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Zend\Stdlib\ArraySerializableInterface;
 
 /**
  * Class User
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="users")
  */
-class User
+class User implements ArraySerializableInterface
 {
     /**
      * @var int
@@ -83,5 +84,32 @@ class User
     {
         $this->username = $username;
         return $this;
+    }
+
+    /**
+     * Exchange internal values from provided array
+     *
+     * @param  array $array
+     * @return void
+     */
+    public function exchangeArray(array $array)
+    {
+        $this->setId(isset($array['id']) ? $array['id'] : null);
+        $this->setUsername(isset($array['username']) ? $array['username'] : null);
+        $this->setPassword(isset($array['password']) ? $array['password'] : null);
+    }
+
+    /**
+     * Return an array representation of the object
+     *
+     * @return array
+     */
+    public function getArrayCopy()
+    {
+        return [
+            'id' => $this->id,
+            'username' => $this->username,
+            'password' => $this->password
+        ];
     }
 }
