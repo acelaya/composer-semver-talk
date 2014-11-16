@@ -10,6 +10,6 @@ class MainController extends AbstractController
 {
     public function indexAction()
     {
-        return $this->renderer->render('index.html');
+        return $this->renderer->render('index.html.twig');
     }
 }

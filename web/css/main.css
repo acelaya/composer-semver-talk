@@ -1,0 +1,15 @@
+
+* {
+    outline: none !important;
+}
+
+body {
+    padding-top: 70px;
+}
+
+.navbar-brand {
+    padding: 10px;
+}
+.navbar-brand img {
+    width: 30px;
+}
