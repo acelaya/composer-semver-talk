@@ -71,4 +71,3 @@ class UserService implements UserServiceInterface
         $this->objectManager->flush();
     }
 }
- 
